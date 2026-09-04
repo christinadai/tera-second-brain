@@ -35,10 +35,25 @@ product_types:
 
   - canonical: lip product
     source: alma
-    aliases: [lip balm, lip mask, lip oil, lip tint, lip gloss, lip stain,
-              lip treatment, lip sleeping mask, chapstick, lip butter,
-              lip routine, lip care, lip booster, lip serum, lips, chapped lips]
+    aliases: [
+      # category words
+      lip balm, lip mask, lip oil, lip tint, lip gloss, lip stain, lip butter,
+      lip treatment, lip sleeping mask, lip serum, lip scrub, lip plumper,
+      lip liner, lip routine, lip care, lip booster, lips, chapped lips,
+      # what people actually type: product and brand names
+      laneige, lip glowy balm, aquaphor, vaseline, carmex, burts bees,
+      blistex, chapstick, eos, nivea lip, summer fridays, rhode peptide,
+      peptide lip treatment, dior lip glow, clinique black honey, glossier balm,
+      dotcom, bum bum, lanolips, lucas papaw, papaw ointment, hurraw,
+      # abbreviations and shorthand people use
+      lip slug, lip slugging, lip masking, slugging my lips]
     note: >
+      NOTE ON MATCHING, from Christina 4 Sep: "lip product" is our label, not
+      a phrase anyone types. Nobody writes "I bought a lip product". They write
+      a brand, a shorthand, or a specific format. The alias list has to carry
+      product names, brand names, abbreviations and slang, or the category is
+      invisible in the data. Same applies to every other canonical here.
+
       Alma marks female lip as "evidence is strong, so priority test first".
       Validated pain: prestige balms wear off in about an hour and cause
       rebound dryness, so buyers churn back to Vaseline. Two landing page

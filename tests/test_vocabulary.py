@@ -38,6 +38,15 @@ CASES = [
     ("what is your lip routine?", "product_types", "lip product"),
     ("my acne has been terrible", "pain_points", "breakouts"),
     ("I have oily skin", "ingredients", "skin type"),
+    # Regression: Christina's point, 4 Sep. "lip product" is our label, not a
+    # phrase anyone types. Brands, product names and slang must all resolve.
+    ("my laneige lip mask ran out", "product_types", "lip product"),
+    ("aquaphor vs vaseline", "product_types", "lip product"),
+    ("anyone tried lip slugging", "product_types", "lip product"),
+    # Requested 4 Sep: acne-adjacent language.
+    ("trying to fade dark spots", "pain_points", "pigmentation"),
+    ("hyperpigmentation on my cheeks", "pain_points", "pigmentation"),
+    ("lots of inflammation after using it", "pain_points", "irritation"),
     ("just adopted a cat today", None, None),
 ]
 

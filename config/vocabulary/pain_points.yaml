@@ -21,8 +21,10 @@ pain_points:
 
   - canonical: irritation
     source: provisional
-    aliases: [irritation, irritated, stinging, burning, itchy, red, redness,
-              reaction, reacted, sensitised, sensitized]
+    aliases: [irritation, irritated, inflammation, inflamed, inflammatory,
+              stinging, burning, itchy, itching, red, redness, flushed, angry,
+              reaction, reacted, sensitised, sensitized, rash, hives, eczema,
+              rosacea, dermatitis, flare up, flare-up]
 
   - canonical: breakouts
     source: provisional
@@ -33,6 +35,20 @@ pain_points:
       Bare "acne" was missing from the first draft and appeared 17 times in the
       first 10 real posts collected. Found by the unmatched-term detector, not
       by review.
+
+  - canonical: pigmentation
+    source: alma
+    aliases: [hyperpigmentation, hyper pigmentation, pigmentation, dark spots,
+              dark marks, acne scars, acne scarring, post inflammatory,
+              pih, melasma, discolouration, discoloration, uneven tone,
+              brown spots, sun spots, age spots, scarring]
+    note: >
+      Requested by Christina 4 Sep alongside the acne widening. Kept as its own
+      entry rather than folded into breakouts, because it is what acne LEAVES
+      BEHIND rather than acne itself, and people often want to solve one
+      without the other. It also connects directly to tera: the inclusivity
+      angle rests on hyperpigmentation disproportionately affecting deeper
+      skin tones, and antioxidants being mechanistically relevant to it.
 
   - canonical: texture and feel
     source: provisional
