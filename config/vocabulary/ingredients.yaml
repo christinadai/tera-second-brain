@@ -1,0 +1,125 @@
+# Track B: ingredients, and the claims made about them.
+#
+# Two separate lists. Ingredients are nouns people name. Claims are the
+# assertions brands make and consumers react to. tera's whole v1 question is
+# about the second, so keep them apart.
+
+ingredients:
+
+  - canonical: vitamin c
+    source: provisional
+    aliases: [vitamin c, ascorbic acid, l-ascorbic acid, laa, vit c, sodium ascorbyl phosphate]
+    note: The comparator tera's potency framing is measured against. High priority.
+
+  - canonical: antioxidant
+    source: provisional
+    aliases: [antioxidant, antioxidants, free radical, free radicals, oxidative stress]
+    note: tera's own category. What people already believe about it matters most.
+
+  - canonical: niacinamide
+    source: provisional
+    aliases: [niacinamide, nicotinamide, vitamin b3]
+
+  - canonical: retinoid
+    source: provisional
+    aliases: [retinol, retinoid, tretinoin, adapalene, retinal, differin]
+
+  - canonical: hyaluronic acid
+    source: provisional
+    aliases: [hyaluronic acid, ha, sodium hyaluronate]
+
+  - canonical: peptide
+    source: provisional
+    aliases: [peptide, peptides, copper peptide, matrixyl]
+
+  - canonical: ceramide
+    source: provisional
+    aliases: [ceramide, ceramides]
+
+  - canonical: aha bha
+    source: provisional
+    aliases: [glycolic acid, lactic acid, salicylic acid, mandelic acid, aha, bha]
+
+  - canonical: azelaic acid
+    source: provisional
+    aliases: [azelaic acid, azelaic]
+
+  - canonical: squalane
+    source: provisional
+    aliases: [squalane, squalene]
+
+  - canonical: fragrance
+    source: provisional
+    aliases: [fragrance, parfum, perfume, essential oil, essential oils, scented, unscented,
+              fragrance free, fragrance-free]
+    note: >
+      Alma's scent question lives here. The interesting split is whether people
+      reject scent outright or only synthetic scent, so keep "essential oil" and
+      "fragrance" distinguishable rather than collapsing them.
+
+  - canonical: plant derived
+    source: provisional
+    aliases: [plant based, plant-derived, botanical, naturally derived, bio-based,
+              olive derived, olive squalane, grapefruit extract, apple extract]
+    note: >
+      tera's ingredients come from olive, with grapefruit and apple in progress.
+      What people already think about plant-derived actives is directly relevant.
+
+claims:
+
+  - canonical: potency claim
+    source: provisional
+    aliases: [times more potent, times stronger, times more effective,
+              more powerful than, clinically proven, clinical study]
+    patterns:
+      # "20x more potent", "20 x stronger", "20% more effective".
+      # A literal alias cannot catch these: the digit before the x defeats the
+      # leading word-boundary guard. Found by the matcher test, not in review.
+      - '\d+\s*[x×]\s*(?:more\s+|times\s+)?(?:potent|stronger|powerful|effective)'
+      - '\d+\s*%\s*(?:more\s+)?(?:potent|stronger|powerful|effective)'
+      - '\d+\s*times\s+(?:more\s+)?(?:potent|stronger|powerful|effective)'
+    note: >
+      The core Track B target. Catches the SHAPE of a multiplier claim rather
+      than any specific number, so it still fires when the number changes.
+
+  - canonical: proof by photo
+    source: provisional
+    aliases: [before and after, before/after, progress pic, progress pics,
+              photoshopped, filtered, facetuned, same lighting, different lighting]
+    note: Skepticism about photo evidence usually appears as an accusation, not a question.
+
+  - canonical: proof by expert
+    source: provisional
+    aliases: [dermatologist recommended, derm recommended, dermatologist approved,
+              my derm said, board certified]
+
+  - canonical: proof by testing
+    source: provisional
+    aliases: [third party tested, third-party tested, independently tested,
+              lab tested, coa, certificate of analysis]
+
+  - canonical: short ingredient list
+    source: provisional
+    aliases: [short ingredient list, few ingredients, minimal ingredients,
+              ingredient list, inci, only x ingredients]
+
+  - canonical: natural positioning
+    source: provisional
+    aliases: [all natural, natural ingredients, non toxic, non-toxic, chemical free,
+              chemical-free, clean beauty]
+    note: >
+      TRACKED, NOT ADOPTED. tera must never market this way, since Amy reads it
+      as chemophobia. We track it because we need to know what consumers mean
+      when they say it, which is a different thing from endorsing it.
+
+  - canonical: sustainability claim
+    source: provisional
+    aliases: [sustainable, eco friendly, eco-friendly, biodegradable, carbon neutral,
+              plastic free, refillable, cruelty free]
+    note: The unprompted-mention test lives here. Does it appear before a brand raises it?
+
+  - canonical: price reaction
+    source: provisional
+    aliases: [too expensive, overpriced, not worth it, worth every penny, dupe,
+              drugstore version, affordable, splurge]
+    note: Feeds Alma's price point research.

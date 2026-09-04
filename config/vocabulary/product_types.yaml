@@ -1,0 +1,66 @@
+# Track A: what kind of product is being discussed.
+#
+# Every term here is `provisional` until checked against Alma's notes or real
+# collected posts. Aliases are matched case-insensitively on word boundaries.
+
+product_types:
+
+  - canonical: face serum
+    source: provisional
+    aliases: [serum, face serum, facial serum, treatment serum]
+    note: Very common word. Expect false positives from hair and lip serums.
+
+  - canonical: overnight treatment
+    source: provisional
+    aliases: [overnight mask, sleeping mask, sleeping pack, night treatment,
+              overnight serum, night serum, pm serum]
+    note: One of Amy's two candidates. Watch this one closely.
+
+  - canonical: lip product
+    source: provisional
+    aliases: [lip balm, lip mask, lip oil, lip tint, lip gloss, lip stain,
+              lip treatment, lip sleeping mask, chapstick]
+    note: Amy's other candidate. Deliberately broad, split later if volume allows.
+
+  - canonical: moisturiser
+    source: provisional
+    aliases: [moisturizer, moisturiser, face cream, day cream, night cream, lotion]
+
+  - canonical: cleanser
+    source: provisional
+    aliases: [cleanser, face wash, facial cleanser, oil cleanser, micellar water,
+              double cleanse]
+
+  - canonical: sunscreen
+    source: provisional
+    aliases: [sunscreen, spf, sunblock, suncream]
+
+  - canonical: toner
+    source: provisional
+    aliases: [toner, essence, hydrating toner]
+
+  - canonical: face mask
+    source: provisional
+    aliases: [sheet mask, clay mask, face mask, overnight face mask]
+
+  - canonical: eye cream
+    source: provisional
+    aliases: [eye cream, eye serum, under eye]
+
+  - canonical: exfoliant
+    source: provisional
+    aliases: [exfoliant, chemical exfoliant, peel, scrub, aha, bha]
+
+  - canonical: hand cream
+    source: provisional
+    aliases: [hand cream, hand lotion, cuticle oil]
+    note: From Alma's product idea list. Promote to `alma` once her notes confirm.
+
+  - canonical: hair care
+    source: provisional
+    aliases: [shampoo, conditioner, hair oil, hair mask, scalp treatment]
+    note: From Alma's product idea list.
+
+  - canonical: body care
+    source: provisional
+    aliases: [body lotion, body butter, body oil, body wash]

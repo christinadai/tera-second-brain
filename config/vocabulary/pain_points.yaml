@@ -1,0 +1,88 @@
+# What went wrong. Feeds both tracks.
+#
+# IMPORTANT: this list is weaker than the other two, on purpose.
+#
+# A pain point is a situation, not a word. "It pilled under my sunscreen" and
+# "everything I layer on top just rolls off" are the same complaint with no
+# shared vocabulary. Rules cannot catch that, and pretending otherwise would
+# produce confident undercounting.
+#
+# So these terms are CANDIDATE FLAGS, not the answer. They mark a post as
+# probably containing a complaint. The classifier decides what the complaint
+# actually is. This is the "rules for things with a right answer, a model for
+# things needing judgement" principle applied honestly.
+
+pain_points:
+
+  - canonical: pilling
+    source: provisional
+    aliases: [pilling, pilled, pills, pills up, balls up, rolls off, rolling off,
+              flaking off, peeling off under]
+
+  - canonical: irritation
+    source: provisional
+    aliases: [irritation, irritated, stinging, burning, itchy, red, redness,
+              reaction, reacted, sensitised, sensitized]
+
+  - canonical: breakouts
+    source: provisional
+    aliases: [breakout, breaking out, purging, clogged, congestion, closed comedones,
+              fungal acne, cystic]
+
+  - canonical: texture and feel
+    source: provisional
+    aliases: [greasy, sticky, tacky, heavy, thick, watery, runny, silicone feel]
+
+  - canonical: product went bad
+    source: provisional
+    aliases: [went orange, turned brown, oxidised, oxidized, separated, changed colour,
+              changed color, smells off, expired, went off]
+    note: >
+      The translation gap in one line. Internally this is "antioxidant
+      degradation". A customer says "my serum went orange". This entry is the
+      bridge between those two vocabularies.
+
+  - canonical: did not work
+    source: provisional
+    aliases: [did nothing, no difference, waste of money, saw no results,
+              gave up on it, stopped using, no change]
+    note: Feeds the repurchase question. Why people stop is worth as much as why they start.
+
+  - canonical: packaging problem
+    source: provisional
+    aliases: [pump broke, dropper, jar packaging, hard to squeeze, leaked, messy,
+              too much product, cant get it out]
+    note: >
+      Relevant to tera's open question about how to package and present the
+      product, not just what goes in it.
+
+  - canonical: scent complaint
+    source: provisional
+    aliases: [smells bad, strong smell, overpowering, chemical smell, artificial scent,
+              gave me a headache]
+    note: Pairs with the fragrance ingredient entry to answer Alma's scent question.
+
+  - canonical: too expensive for what it is
+    source: provisional
+    aliases: [not worth the price, cheaper alternative, same as the drugstore one,
+              paying for the packaging, paying for the brand]
+
+  - canonical: hard to find or buy
+    source: provisional
+    aliases: [discontinued, out of stock, cant find it, only ships to, not available in]
+
+# Delight, not pain. Alma's peel-off lip tint observation: a format innovation
+# that changes nothing functional but is fun to use and fun to film. Worth
+# catching because it is a product-design signal, not a complaint.
+delight_signals:
+
+  - canonical: satisfying format
+    source: provisional
+    aliases: [so satisfying, oddly satisfying, fun to use, love the texture,
+              peel off, peels off, love watching, asmr]
+
+  - canonical: holy grail
+    source: provisional
+    aliases: [holy grail, hg, repurchased, on my third bottle, will buy again,
+              never going back, ride or die]
+    note: The positive mirror of "did not work". Repeat purchase is the real signal.
