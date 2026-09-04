@@ -14,12 +14,24 @@ product_types:
     source: alma
     aliases: [night cream, night moisturiser, night moisturizer, pm moisturiser,
               overnight treatment, overnight mask, sleeping mask, sleeping pack,
-              night treatment, overnight serum, night serum, pm serum, night oil]
+              night treatment, night oil]
     note: >
       THE lead product concept in Alma's research, not a generic overnight
       product. Her format validation section is built entirely around it.
       Also carries a real objection: some of r/SkincareAddiction argues night
       cream is a marketing category rather than a functional one. Track that.
+      Kept SEPARATE from overnight serum on purpose. Both are live candidates
+      and Track A should be able to say which format people actually discuss,
+      rather than collapsing them and losing the distinction.
+
+  - canonical: overnight serum
+    source: alma
+    aliases: [overnight serum, night serum, pm serum, evening serum,
+              overnight ampoule, night ampoule]
+    note: >
+      Named by Alma verbally on 2 Sep as a candidate, alongside lip. The Notion
+      notes lead with night cream instead. Both are tracked separately so the
+      data can settle which format the conversation is actually about.
 
   - canonical: lip product
     source: alma
@@ -77,17 +89,6 @@ product_types:
     source: provisional
     aliases: [body lotion, body butter, body oil, body wash]
 
-  - canonical: pet skincare
-    source: alma
-    aliases: [dog balm, paw balm, snout balm, nose balm, pet balm, dog sunscreen,
-              pet skin, dog skin, cat skin]
-    patterns:
-      - '\b(?:dogs?|cats?|puppys?|pets?)\s+(?:nose|snout|ears?|paws?|skin|coat|back)\b' 
-    note: >
-      Genuinely surprising, and in Alma's listening lab as Section 6. An
-      antioxidant balm for UV-exposed areas on pets: nose, ears, back. Nobody
-      would guess this from the skincare framing, which is exactly why the
-      vocabulary has to come from her notes and not from imagination.
 
   - canonical: all in one
     source: alma

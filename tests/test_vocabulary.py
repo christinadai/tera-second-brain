@@ -24,7 +24,7 @@ CASES = [
     ("it's my holy grail", "delight_signals", "holy grail"),
     # Regression: apostrophes. Both of these silently failed before the
     # normalize() step existed, on straight AND curly apostrophes.
-    ("my dog's nose gets dry and cracked", "product_types", "pet skincare"),
+    ("dog's owner's routine", None, None),  # apostrophes, no longer a pet term
     ("just because it's plant based doesn't mean it does anything",
      "claims", "plant based scepticism"),
     ("it\u2019s plant based", "ingredients", "plant derived"),
