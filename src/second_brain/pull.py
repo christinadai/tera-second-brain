@@ -109,3 +109,76 @@ def pull(conn: sqlite3.Connection, client: praw.Reddit, rules: dict,
         log.close(classify_error(exc), f"{type(exc).__name__}: {exc}")
         raise
     return log
+
+
+# ---------------------------------------------------------------------------
+# Keyless path. Temporary, pending Reddit API access. See reddit_keyless.py.
+# ---------------------------------------------------------------------------
+
+def pull_keyless(conn: sqlite3.Connection, rules: dict, subreddits: list[str],
+                 listing: str = "new", limit: int = 10) -> JobLog:
+    """Collect over public RSS instead of the API. Same tables, same job log.
+
+    Rows land with source "reddit-rss" and NULL score/num_comments, because RSS
+    carries neither. NULL, never 0: "we do not know" and "nobody upvoted it"
+    must not be confusable when ranking later.
+    """
+    from . import reddit_keyless as rk
+
+    reddit_rules = rules["reddit"]
+    log = JobLog(conn, job="pull_reddit_rss", subreddits=subreddits)
+    failures: list[str] = []
+    worked: list[str] = []
+
+    try:
+        for name in subreddits:
+            try:
+                posts = rk.fetch_listing(name, listing=listing, limit=limit)
+                for post in posts:
+                    log.fetched += 1
+                    if _should_drop(post.body, post.author, False, reddit_rules):
+                        log.skipped += 1
+                        continue
+                    payload = {
+                        "id": post.post_id, "title": post.title,
+                        "selftext_html": post.body, "author": post.author,
+                        "permalink": post.permalink, "created_utc": post.created_utc,
+                        "_collected_via": "rss",
+                        "_score_unavailable": True,
+                    }
+                    new = _store(conn, {
+                        "post_id": post.post_id, "source": "reddit-rss",
+                        "subreddit": name, "kind": "post", "parent_id": None,
+                        "permalink": post.permalink,
+                        "created_utc": post.created_utc,
+                        "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                        "run_id": log.run_id,
+                        "score": None,          # RSS gives no score. NULL, not 0.
+                        "num_comments": None,   # same.
+                        "payload": json.dumps(payload, ensure_ascii=False),
+                    })
+                    log.stored += 1 if new else 0
+                    log.duplicate += 0 if new else 1
+                conn.commit()
+                worked.append(name)
+            except rk.RateLimited as exc:
+                failures.append(f"r/{name}: rate-limited ({exc})")
+            except Exception as exc:
+                failures.append(f"r/{name}: {classify_error(exc)} ({exc})")
+
+        conn.commit()
+        if failures and worked:
+            log.close("partial", "; ".join(failures))
+        elif failures:
+            outcome = "rate-limited" if "rate-limited" in failures[0] \
+                else classify_error(Exception(failures[0]))
+            log.close(outcome, "; ".join(failures))
+        elif log.stored == 0 and log.duplicate == 0:
+            log.close("no-results", "Ran cleanly, feed was empty.")
+        else:
+            log.close("ok", f"RSS collection from {len(worked)} subreddit(s). "
+                            f"No scores available on this path.")
+    except Exception as exc:
+        log.close(classify_error(exc), f"{type(exc).__name__}: {exc}")
+        raise
+    return log

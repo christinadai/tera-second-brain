@@ -26,8 +26,13 @@ pain_points:
 
   - canonical: breakouts
     source: provisional
-    aliases: [breakout, breaking out, purging, clogged, congestion, closed comedones,
-              fungal acne, cystic]
+    aliases: [acne, breakout, breakouts, breaking out, purging, clogged, congestion,
+              closed comedones, fungal acne, cystic, spots, pimples, blackheads,
+              whiteheads, folliculitis]
+    note: >
+      Bare "acne" was missing from the first draft and appeared 17 times in the
+      first 10 real posts collected. Found by the unmatched-term detector, not
+      by review.
 
   - canonical: texture and feel
     source: provisional

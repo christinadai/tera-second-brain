@@ -109,6 +109,15 @@ ingredients:
     aliases: [inflammaging, inflammageing, chronic inflammation, anti-inflammatory]
     note: Emerging hashtag, spiking through 2025. Early-adopter audience.
 
+  - canonical: skin type
+    source: observed
+    aliases: [oily skin, dry skin, combination skin, sensitive skin, normal skin,
+              acne prone, acne-prone, dehydrated skin, mature skin, my skin type]
+    note: >
+      Source `observed`: surfaced by the unmatched-term detector on the first
+      10 real posts, where "dry" and "oily" were frequent and unclaimed.
+      Skin type conditions almost every product complaint, so it belongs here.
+
 claims:
 
   - canonical: potency claim
@@ -200,3 +209,4 @@ claims:
     aliases: [dupe, dupes, cheaper alternative, same ingredients as, knockoff,
               the ordinary version, budget version]
     note: 42% of prestige buyers have bought a dupe. Rejection of unjustified premium.
+

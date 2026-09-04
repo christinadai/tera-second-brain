@@ -33,6 +33,11 @@ CASES = [
     ("is night cream just a marketing category", "pain_points", "premium not justified"),
     ("does the uv lamp at the salon damage your hands", "ingredients", "uv damage"),
     ("i use the ordinary and cerave", "brands", "masstige leaders"),
+    # Regression: gaps found by the unmatched-term detector on the first 10
+    # real posts collected from r/SkincareAddiction, 4 Sep 2026.
+    ("what is your lip routine?", "product_types", "lip product"),
+    ("my acne has been terrible", "pain_points", "breakouts"),
+    ("I have oily skin", "ingredients", "skin type"),
     ("just adopted a cat today", None, None),
 ]
 
