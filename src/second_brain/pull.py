@@ -44,7 +44,8 @@ def _store(conn: sqlite3.Connection, row: dict) -> bool:
            (post_id, source, subreddit, kind, parent_id, permalink, created_utc,
             fetched_at, run_id, score, num_comments, payload)
            VALUES (:post_id, :source, :subreddit, :kind, :parent_id, :permalink,
-                   :created_utc, :fetched_at, :run_id, :score, :num_comments, :payload)""",
+                   :created_utc, :fetched_at, :run_id, :score, :num_comments,
+                   :payload)""",
         row,
     )
     return cur.rowcount > 0
@@ -134,7 +135,8 @@ def pull_keyless(conn: sqlite3.Connection, rules: dict, subreddits: list[str],
         for name in subreddits:
             try:
                 posts = rk.fetch_listing(name, listing=listing, limit=limit)
-                for post in posts:
+                feed = f"{listing}:month" if listing == "top" else listing
+                for position, post in enumerate(posts, start=1):
                     log.fetched += 1
                     if _should_drop(post.body, post.author, False, reddit_rules):
                         log.skipped += 1
@@ -145,6 +147,8 @@ def pull_keyless(conn: sqlite3.Connection, rules: dict, subreddits: list[str],
                         "permalink": post.permalink, "created_utc": post.created_utc,
                         "_collected_via": "rss",
                         "_score_unavailable": True,
+                        "_feed_rank": position,
+                        "_feed": feed,
                     }
                     new = _store(conn, {
                         "post_id": post.post_id, "source": "reddit-rss",
@@ -159,6 +163,15 @@ def pull_keyless(conn: sqlite3.Connection, rules: dict, subreddits: list[str],
                     })
                     log.stored += 1 if new else 0
                     log.duplicate += 0 if new else 1
+                    # Rank is recorded every run, even for a post we already
+                    # have. That is the point: it is an observation, not a fact
+                    # about the post, and the series is the signal.
+                    conn.execute(
+                        """INSERT OR REPLACE INTO feed_observations
+                           (run_id, post_id, subreddit, feed, rank, observed_at)
+                           VALUES (?, ?, ?, ?, ?, ?)""",
+                        (log.run_id, post.post_id, name, feed, position,
+                         datetime.now(timezone.utc).isoformat(timespec="seconds")))
                 conn.commit()
                 worked.append(name)
             except rk.RateLimited as exc:

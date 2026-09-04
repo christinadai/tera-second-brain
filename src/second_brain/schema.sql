@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS raw (
     created_utc   INTEGER NOT NULL,        -- when the author posted it
     fetched_at    TEXT NOT NULL,           -- when we collected it (ISO-8601 UTC)
     run_id        TEXT NOT NULL,           -- which run brought it in
-    score         INTEGER,                 -- upvotes at fetch time
-    num_comments  INTEGER,
+    score         INTEGER,                 -- upvotes at fetch time. NULL on the RSS path.
+    num_comments  INTEGER,                 -- NULL on the RSS path.
     payload       TEXT NOT NULL,           -- the untouched API response, as JSON
     FOREIGN KEY (run_id) REFERENCES job_logs(run_id)
 );
@@ -80,3 +80,33 @@ CREATE TABLE IF NOT EXISTS job_logs (
 
 CREATE INDEX IF NOT EXISTS idx_job_started ON job_logs(started_at);
 CREATE INDEX IF NOT EXISTS idx_job_outcome ON job_logs(outcome);
+
+-- ---------------------------------------------------------------------------
+-- feed_observations: where a post sat in a feed, on a particular run.
+--
+-- Rank is a property of a FETCH, not of a post. The same post ranks #3 this
+-- week and #17 next week, so it cannot live as a column on raw: a post appears
+-- in raw once, but can be observed in a feed many times.
+--
+-- On the RSS path this is the ONLY ranking signal available, because Reddit
+-- sorts "top of month" by its own score and hands us the order without the
+-- numbers. Rank is ordinal, not magnitude: #1 might have ten times the upvotes
+-- of #2, or barely more. Only comparable within the same subreddit and feed.
+--
+-- It also becomes a time series for free. A post climbing the ranking between
+-- runs is exactly the "what changed since last time" signal the briefing needs.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS feed_observations (
+    run_id      TEXT NOT NULL,
+    post_id     TEXT NOT NULL,
+    subreddit   TEXT NOT NULL,
+    feed        TEXT NOT NULL,     -- "top:month", "new", "hot"
+    rank        INTEGER NOT NULL,  -- 1 = first in the feed
+    observed_at TEXT NOT NULL,
+    PRIMARY KEY (run_id, post_id, feed),
+    FOREIGN KEY (run_id) REFERENCES job_logs(run_id),
+    FOREIGN KEY (post_id) REFERENCES raw(post_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_obs_post ON feed_observations(post_id);
+CREATE INDEX IF NOT EXISTS idx_obs_feed ON feed_observations(subreddit, feed, rank);
