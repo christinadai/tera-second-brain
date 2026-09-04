@@ -117,7 +117,8 @@ def pull(conn: sqlite3.Connection, client: praw.Reddit, rules: dict,
 # ---------------------------------------------------------------------------
 
 def pull_keyless(conn: sqlite3.Connection, rules: dict, subreddits: list[str],
-                 listing: str = "new", limit: int = 10) -> JobLog:
+                 listing: str = "new", limit: int = 10,
+                 time_filter: str = "month") -> JobLog:
     """Collect over public RSS instead of the API. Same tables, same job log.
 
     Rows land with source "reddit-rss" and NULL score/num_comments, because RSS
@@ -134,8 +135,9 @@ def pull_keyless(conn: sqlite3.Connection, rules: dict, subreddits: list[str],
     try:
         for name in subreddits:
             try:
-                posts = rk.fetch_listing(name, listing=listing, limit=limit)
-                feed = f"{listing}:month" if listing == "top" else listing
+                posts = rk.fetch_listing(name, listing=listing, limit=limit,
+                                         time_filter=time_filter)
+                feed = f"{listing}:{time_filter}" if listing == "top" else listing
                 for position, post in enumerate(posts, start=1):
                     log.fetched += 1
                     if _should_drop(post.body, post.author, False, reddit_rules):

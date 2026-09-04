@@ -19,11 +19,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--subreddit", action="append", required=True)
 parser.add_argument("--limit", type=int, default=10)
 parser.add_argument("--listing", default="new", choices=["new", "hot", "top", "rising"])
+parser.add_argument("--time", default="month",
+                    choices=["hour", "day", "week", "month", "year", "all"],
+                    help="time window, only meaningful with --listing top")
 args = parser.parse_args()
 
 conn = connect()
 log = pull_keyless(conn, load_sources(), args.subreddit,
-                   listing=args.listing, limit=args.limit)
+                   listing=args.listing, limit=args.limit, time_filter=args.time)
 row = conn.execute(
     "SELECT outcome, records_fetched, records_stored, records_duplicate, "
     "records_skipped, detail FROM job_logs WHERE run_id = ?", (log.run_id,)).fetchone()
