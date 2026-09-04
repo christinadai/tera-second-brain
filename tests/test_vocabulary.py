@@ -22,6 +22,17 @@ CASES = [
     ("looking for a lip sleeping mask", "product_types", "lip product"),
     ("fragrance gives me a headache", "ingredients", "fragrance"),
     ("it's my holy grail", "delight_signals", "holy grail"),
+    # Regression: apostrophes. Both of these silently failed before the
+    # normalize() step existed, on straight AND curly apostrophes.
+    ("my dog's nose gets dry and cracked", "product_types", "pet skincare"),
+    ("just because it's plant based doesn't mean it does anything",
+     "claims", "plant based scepticism"),
+    ("it\u2019s plant based", "ingredients", "plant derived"),
+    # Regression: terms sourced from Alma's notes, 3 Sep.
+    ("my laneige balm wears off after an hour", "pain_points", "wears off too fast"),
+    ("is night cream just a marketing category", "pain_points", "premium not justified"),
+    ("does the uv lamp at the salon damage your hands", "ingredients", "uv damage"),
+    ("i use the ordinary and cerave", "brands", "masstige leaders"),
     ("just adopted a cat today", None, None),
 ]
 

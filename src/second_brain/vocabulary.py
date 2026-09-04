@@ -30,9 +30,21 @@ LIST_FILES = {
     "claims": "ingredients.yaml",
     "pain_points": "pain_points.yaml",
     "delight_signals": "pain_points.yaml",
+    "brands": "brands.yaml",
 }
 
 VALID_SOURCES = ("provisional", "alma", "observed")
+
+# Apostrophes are the single most common reason a term silently fails to match.
+# "dog's nose" would not match the alias "dog nose", and "it's plant based"
+# would not match "its plant based". Reddit posts also mix straight and curly
+# apostrophes freely. So both text and aliases are normalised the same way:
+# curly quotes folded to straight, then apostrophes removed entirely.
+_APOSTROPHES = str.maketrans({"\u2019": "'", "\u02bc": "'", "\u2018": "'"})
+
+
+def normalize(text: str) -> str:
+    return (text or "").translate(_APOSTROPHES).replace("'", "")
 
 
 @dataclass
@@ -67,7 +79,8 @@ def _compile(aliases: list[str], patterns: list[str] | None = None) -> re.Patter
     word-boundary guard on a literal alias "x more potent" never fires.
     """
     parts = []
-    ordered = sorted((a.strip() for a in aliases if a.strip()), key=len, reverse=True)
+    ordered = sorted((normalize(a).strip() for a in aliases if a.strip()),
+                     key=len, reverse=True)
     if ordered:
         joined = "|".join(re.escape(a) for a in ordered)
         parts.append(rf"(?<!\w)(?:{joined})(?!\w)")
@@ -112,8 +125,9 @@ def load_vocabulary(vocab_dir: Path | None = None) -> list[Term]:
 
 def match(text: str, terms: list[Term]) -> MatchResult:
     result = MatchResult()
+    normalized = normalize(text)
     for term in terms:
-        found = term.pattern.findall(text or "")
+        found = term.pattern.findall(normalized)
         if found:
             bucket = result.hits.setdefault(term.list_name, {})
             bucket[term.canonical] = sorted({f.lower() for f in found})
@@ -137,7 +151,7 @@ def unmatched_terms(text: str, terms: list[Term], top: int = 20) -> list[tuple[s
     This is the vocabulary rot detector. Reviewed weekly: anything here that is
     a real skincare term is a gap, and gets added with source `observed`.
     """
-    lowered = (text or "").lower()
+    lowered = normalize(text).lower()
     claimed: set[str] = set()
     for term in terms:
         for hit in term.pattern.findall(lowered):

@@ -1,0 +1,39 @@
+# Competitor and reference brands named in Alma's research.
+#
+# Used to spot competitor mentions in posts, so "what are competitors
+# launching" becomes answerable from the same data rather than a separate job.
+
+brands:
+
+  - canonical: night cream competitors
+    source: alma
+    aliases: [the inkey list, inkey list, bybi, glossier, typology, rhode,
+              espa, ren skincare, votary, elemis, medik8, oskia]
+    note: Alma's night cream price table, £10 to £96 per 50ml.
+
+  - canonical: masstige leaders
+    source: alma
+    aliases: [the ordinary, cerave, la roche posay, la roche-posay, byoma, boots,
+              e.l.f., elf cosmetics, hero cosmetics]
+    note: NielsenIQ top masstige performers 2024. The comparison set that matters.
+
+  - canonical: lip references
+    source: alma
+    aliases: [laneige, vaseline, carmex, sacheu, wonderskin, daise, aquaphor,
+              burts bees, summer fridays]
+    note: >
+      Laneige and Vaseline are the churn pair in the validated lip pain point.
+      Sacheu and WonderSkin are the peel-off format precedents.
+
+  - canonical: aesthetic references
+    source: alma
+    aliases: [aesop, monastery made, pai skincare, sunday riley, dieux, fenty,
+              olaplex, hims, healf]
+
+  - canonical: credential creators
+    source: alma
+    aliases: [lab muffin, dr dray, dr ewoma, cosmetic chemist, esthetician,
+              dermatologist]
+    note: >
+      Alma notes the community cross-references these. A recommendation from a
+      credentialled source carries far more weight than a lifestyle influencer.

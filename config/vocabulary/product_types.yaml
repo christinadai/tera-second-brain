@@ -10,17 +10,26 @@ product_types:
     aliases: [serum, face serum, facial serum, treatment serum]
     note: Very common word. Expect false positives from hair and lip serums.
 
-  - canonical: overnight treatment
-    source: provisional
-    aliases: [overnight mask, sleeping mask, sleeping pack, night treatment,
-              overnight serum, night serum, pm serum]
-    note: One of Amy's two candidates. Watch this one closely.
+  - canonical: night cream
+    source: alma
+    aliases: [night cream, night moisturiser, night moisturizer, pm moisturiser,
+              overnight treatment, overnight mask, sleeping mask, sleeping pack,
+              night treatment, overnight serum, night serum, pm serum, night oil]
+    note: >
+      THE lead product concept in Alma's research, not a generic overnight
+      product. Her format validation section is built entirely around it.
+      Also carries a real objection: some of r/SkincareAddiction argues night
+      cream is a marketing category rather than a functional one. Track that.
 
   - canonical: lip product
-    source: provisional
+    source: alma
     aliases: [lip balm, lip mask, lip oil, lip tint, lip gloss, lip stain,
-              lip treatment, lip sleeping mask, chapstick]
-    note: Amy's other candidate. Deliberately broad, split later if volume allows.
+              lip treatment, lip sleeping mask, chapstick, lip butter]
+    note: >
+      Alma marks female lip as "evidence is strong, so priority test first".
+      Validated pain: prestige balms wear off in about an hour and cause
+      rebound dryness, so buyers churn back to Vaseline. Two landing page
+      briefs already written, education and efficacy.
 
   - canonical: moisturiser
     source: provisional
@@ -52,9 +61,12 @@ product_types:
     aliases: [exfoliant, chemical exfoliant, peel, scrub, aha, bha]
 
   - canonical: hand cream
-    source: provisional
-    aliases: [hand cream, hand lotion, cuticle oil]
-    note: From Alma's product idea list. Promote to `alma` once her notes confirm.
+    source: alma
+    aliases: [hand cream, hand lotion, cuticle oil, hand treatment, hand mask]
+    note: >
+      A real candidate with a specific validated trigger: UV lamps at nail
+      salons during gel manicures. Alma has a landing page brief written for
+      "post-gel-manicure UV recovery".
 
   - canonical: hair care
     source: provisional
@@ -64,3 +76,23 @@ product_types:
   - canonical: body care
     source: provisional
     aliases: [body lotion, body butter, body oil, body wash]
+
+  - canonical: pet skincare
+    source: alma
+    aliases: [dog balm, paw balm, snout balm, nose balm, pet balm, dog sunscreen,
+              pet skin, dog skin, cat skin]
+    patterns:
+      - '\b(?:dogs?|cats?|puppys?|pets?)\s+(?:nose|snout|ears?|paws?|skin|coat|back)\b' 
+    note: >
+      Genuinely surprising, and in Alma's listening lab as Section 6. An
+      antioxidant balm for UV-exposed areas on pets: nose, ears, back. Nobody
+      would guess this from the skincare framing, which is exactly why the
+      vocabulary has to come from her notes and not from imagination.
+
+  - canonical: all in one
+    source: alma
+    aliases: [all in one, all-in-one, one product does it all, multi-step routine,
+              10 step routine, simplify my routine, skin cycling]
+    note: >
+      Routine fatigue is a live trend in her notes. Simplified routine content
+      outperforms multi-step in 2025.

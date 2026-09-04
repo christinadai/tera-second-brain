@@ -71,6 +71,23 @@ pain_points:
     source: provisional
     aliases: [discontinued, out of stock, cant find it, only ships to, not available in]
 
+  # --- added from Alma's research notes, 3 Sep 2026 ---
+
+  - canonical: wears off too fast
+    source: alma
+    aliases: [wears off, wore off, doesnt last, only lasts an hour, reapply constantly,
+              keep reapplying, rebound dryness, drier than before, worse than before]
+    note: >
+      The validated lip pain point, and the strongest single finding in Alma's
+      notes: prestige balms wear off in about an hour and cause rebound
+      dryness, so buyers churn back to Vaseline. Real, repeated, unsolved.
+
+  - canonical: premium not justified
+    source: alma
+    aliases: [not more effective than, same as the cheap one, doesnt work better,
+              premium price for, paying extra for nothing, marketing category]
+    note: 64% of consumers do not believe premium beauty outperforms mass.
+
 # Delight, not pain. Alma's peel-off lip tint observation: a format innovation
 # that changes nothing functional but is fun to use and fun to film. Worth
 # catching because it is a product-design signal, not a complaint.
@@ -86,3 +103,6 @@ delight_signals:
     aliases: [holy grail, hg, repurchased, on my third bottle, will buy again,
               never going back, ride or die]
     note: The positive mirror of "did not work". Repeat purchase is the real signal.
+
+# --- added from Alma's research notes, 3 Sep 2026 ---
+

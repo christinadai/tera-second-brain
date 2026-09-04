@@ -65,6 +65,50 @@ ingredients:
       tera's ingredients come from olive, with grapefruit and apple in progress.
       What people already think about plant-derived actives is directly relevant.
 
+  # --- added from Alma's research notes, 3 Sep 2026 ---
+
+  - canonical: uv damage
+    source: alma
+    aliases: [uv damage, uv exposure, sun damage, sun exposure, uva, uvb,
+              photoageing, photoaging, environmental damage, oxidative damage,
+              free radical damage, uv lamp, gel manicure, nail lamp]
+    note: >
+      THE core positioning, and it was missing entirely from my provisional
+      list. Every product concept in Alma's notes is framed as repairing UV
+      damage, not as generic antioxidant potency. The nail-lamp terms matter
+      for the hand cream concept.
+
+  - canonical: olive leaf
+    source: alma
+    aliases: [olive leaf, olive derived, hydroxytyrosol, oleuropein, olive extract]
+    note: tera's actual ingredient is a rare olive-leaf-derived antioxidant.
+
+  - canonical: skin barrier
+    source: alma
+    aliases: [skin barrier, moisture barrier, barrier repair, barrier damage,
+              tewl, transepidermal water loss, moisture retention, acid mantle]
+    note: >
+      From Alma's list of the community's functional vocabulary. This is how
+      r/SkincareAddiction actually talks: functional, not aspirational.
+
+  - canonical: actives vocabulary
+    source: alma
+    aliases: [actives, humectant, humectants, emollient, emollients, occlusive,
+              occlusives, comedogenic, non-comedogenic, sensitising, sensitizing,
+              irritant, inci, percentage, concentration]
+    note: Ingredient-function vocabulary. Presence signals a sophisticated poster.
+
+  - canonical: routine terminology
+    source: alma
+    aliases: [slugging, skin cycling, pm routine, am routine, grwm, double cleanse,
+              purge, purging]
+    note: Community-coined routine terms, high engagement per Alma.
+
+  - canonical: inflammaging
+    source: alma
+    aliases: [inflammaging, inflammageing, chronic inflammation, anti-inflammatory]
+    note: Emerging hashtag, spiking through 2025. Early-adopter audience.
+
 claims:
 
   - canonical: potency claim
@@ -123,3 +167,36 @@ claims:
     aliases: [too expensive, overpriced, not worth it, worth every penny, dupe,
               drugstore version, affordable, splurge]
     note: Feeds Alma's price point research.
+
+# ---------------------------------------------------------------------------
+# Added from Alma's research notes, 3 Sep 2026. Source `alma` means the term
+# was observed in her manual research, not guessed.
+# ---------------------------------------------------------------------------
+
+  - canonical: plant based scepticism
+    source: alma
+    aliases: [just because its plant based, plant based doesnt mean, botanical extract,
+              proprietary blend, unnamed extract, marketing status, fairy dusting,
+              does nothing, no evidence for]
+    note: >
+      Alma names this as the most frequent plant-ingredient objection in the
+      community. Directly aimed at tera's positioning, so it is the single
+      most important Track B pattern after the potency claim.
+
+  - canonical: greenwashing fatigue
+    source: alma
+    aliases: [greenwashing, greenwash, meaningless label, marketing term,
+              buzzword, means nothing, unregulated term]
+    note: 79% of beauty consumers doubt sustainability claims, per her sourcing.
+
+  - canonical: evidence markers
+    source: alma
+    aliases: [evidence based, peer reviewed, clinical trial, published study,
+              double blind, placebo, in vitro, in vivo, cited study]
+    note: Alma lists these as the credibility markers that cut through noise.
+
+  - canonical: dupe culture
+    source: alma
+    aliases: [dupe, dupes, cheaper alternative, same ingredients as, knockoff,
+              the ordinary version, budget version]
+    note: 42% of prestige buyers have bought a dupe. Rejection of unjustified premium.
