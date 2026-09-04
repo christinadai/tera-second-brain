@@ -1,0 +1,17 @@
+# Secrets: never commit
+.env
+
+# The database itself is data, not code. Schema is committed, contents are not.
+*.db
+*.db-journal
+*.sqlite3
+data/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store

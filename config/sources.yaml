@@ -1,0 +1,54 @@
+# What we collect, and what we throw away.
+#
+# This file is meant to be edited by a person, including a person who does not
+# write code. Change it, re-run the pull, and the behaviour changes.
+
+reddit:
+  # ---------------------------------------------------------------------
+  # Subreddits are NOT guessed. The discovery pass (scripts/discover_subreddits.py)
+  # scores candidates by how densely relevant posts appear in them, never by
+  # subscriber count: a 5M-member sub that ignores our topics is worth less
+  # than a 40k-member sub that discusses them constantly.
+  #
+  # Budget: 8 total.
+  # ---------------------------------------------------------------------
+  subreddit_budget: 8
+
+  # Chosen by hand, not by the discovery pass. Flagged so the Friday report can
+  # say honestly which subs were asserted and which were earned.
+  manual:
+    - name: SkincareAddiction
+      reason: >
+        Science-leaning and argumentative, so people explain WHY a product
+        disappointed them. Reasoning depth, not audience fit.
+
+  # Filled in by the discovery pass. Empty until it has run: an empty list here
+  # means "not yet discovered", not "nothing found".
+  discovered: []
+
+  listing: new          # new | hot | top
+  time_filter: month    # only applies when listing is "top"
+  post_limit: 100       # per subreddit, per run
+  min_score: 0          # collect everything at first; rank hard on the way out
+  include_comments: true
+  comment_limit: 50     # per post. The objection is usually in the replies.
+
+  # Dropped on sight, before anything is stored.
+  drop:
+    deleted: true       # body is "[deleted]"
+    removed: true       # body is "[removed]"
+    stickied: true      # mod announcements and rule reminders
+    authors:
+      - AutoModerator
+
+# Topics the discovery pass searches for when deciding where the conversation
+# lives. Track A first: what should tera make.
+discovery_queries:
+  - overnight face serum
+  - lip product recommendations
+  - antioxidant skincare
+  - vitamin c serum oxidised
+  - skincare ingredient potency
+  - lip balm vs lip oil
+  - skincare routine holy grail
+  - drugstore vs expensive skincare
